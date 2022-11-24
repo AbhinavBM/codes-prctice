@@ -1,0 +1,28 @@
+
+#include <stdio.h>
+
+int main() {
+    int n,len,i,j;
+    // Write C code here
+    printf("enter n");
+    scanf("%d",&n);
+    len=2*n-1;
+    for(i=0;i<len;i++)
+    {   for(j=0;j<len;j++)
+        {   
+            if(i=0||j=0||i=len||j=len)
+            printf("%d",n)
+
+    return 0;
+}
+
+/*
+5	5	5	5	5	5	5	5	5	
+5	4	4	4	4	4	4	4	5	
+5	4						4	5	
+5	4						4	5	
+5	4						4	5	
+5	4						4	5	
+5	4						4	5	
+5	4	4	4	4	4	4	4	5	
+5	5	5	5	5	5	5	5	5*/
