@@ -1,0 +1,78 @@
+#include <stdio.h>
+char stack[50];
+int top=-1;
+int pop()
+{
+  return stack[top--];
+}
+void push(char x)
+{
+  stack[++top]=x;
+}
+int prio(char ch)
+{  int p;
+  switch(ch)
+    {
+      case '*':
+      case '/':
+      p=2;break;
+      case '+':
+      case '-':
+      p=1;
+      break;
+      case '(':
+      p=-1;
+      break;
+    }
+ return p;
+}
+void conversion(char infix[],char postfix[])
+{int k=0;
+  int i=0;
+  char p;
+  while(infix[i]!='\0')
+    {char p=infix[i];
+     switch(p)
+       {
+         default:
+         postfix[k++]=p;
+         break;
+         case '(':
+         push(p);
+         break;
+         case ')':
+         while(top!=-1&&stack[top]!='(')
+           postfix[k++]=pop();
+         pop();
+         break;
+         case '+':
+         case '-':
+         case '*':
+         case '/':
+         while(top!=-1&&prio(stack[top])>=prio(p))
+           {
+             postfix[k++]=pop();
+             
+             
+           }
+         push(p);
+         break;
+         
+       }
+        
+      
+    i++;}
+ while(top!=-1)
+   {
+     postfix[k++]=pop();
+   }
+ postfix[k]='\0';
+}
+int main()
+{
+  char infix[50],postfix[50];
+  printf("enter the expression\n");
+  scanf("%s",infix);
+  conversion(infix,postfix);
+  printf("postfix  %s",postfix);
+}
